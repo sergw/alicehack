@@ -1,0 +1,20 @@
+{
+  "name": "alicehack",
+  "version": "0.0.1",
+  "description": "Two in tavern",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sergw/alicehack.git"
+  },
+  "engines": {
+    "node": "12.14.1",
+    "npm": "6.13.4"
+  },
+  "scripts": {
+    "start": "micro"
+  },
+  "dependencies": {
+    "micro": "9.3.4"
+  },
+  "private": true
+}
