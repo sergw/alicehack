@@ -51,13 +51,18 @@ class State {
     }
 
     setBotStrategy(strategy) {
-        this._userStrategy = parseInt(strategy);
+        this._botStartegy = parseInt(strategy);
     }
 
     addBotPoints(points) {
-        this._userPoints += parseInt(points);
+        this._botPoints += parseInt(points);
     }
 
+    //TODO: убрать из стейта
+    calcUserScore() {
+        const sum = this._botPoints + this._userPoints;
+        return parseInt( this._userPoints / sum * 100 )
+    }
 }
 
 class StateStorage {
