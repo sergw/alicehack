@@ -14,7 +14,8 @@
     "start": "micro"
   },
   "dependencies": {
-    "micro": "9.3.4"
+    "micro": "9.3.4",
+    "underscore": "1.9.2"
   },
   "private": true
 }
