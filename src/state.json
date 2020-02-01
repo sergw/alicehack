@@ -1,0 +1,118 @@
+{
+    "game": "Game name",
+    "intro": "Description",
+    "loop": 0,
+    "players": [
+        {
+            "name": "player",
+            "points": 0,
+            "strategy": 1
+        },
+        {
+            "name": "ai",
+            "points": 0,
+            "strategy": 2
+        }
+    ],
+    "rooms": [
+        {
+            "room_title": "Title",
+            "room_description": "Room escription",
+            "loops": [
+                {
+                    "loop_question": "Loop 1 question",
+                    "player_answers": [
+                        {
+                            "text_answer": "First answer",
+                            "strategy": 0
+                        },
+                        {
+                            "text_answer": "Second answer",
+                            "strategy": 1
+                        },
+                        {
+                            "text_answer": " answer",
+                            "strategy": 2
+                        }
+                    ],
+                    "ai_answers": [
+                        {
+                            "text_answer": "First answer",
+                            "strategy": 0
+                        },
+                        {
+                            "text_answer": "Second answer",
+                            "strategy": 1
+                        },
+                        {
+                            "text_answer": " answer",
+                            "strategy": 2
+                        }
+                    ]
+                },
+                {
+                    "loop_question": "Loop 2 description",
+                    "player_answers": [
+                        {
+                            "text_answer": "First answer",
+                            "strategy": 0
+                        },
+                        {
+                            "text_answer": "Second answer",
+                            "strategy": 1
+                        },
+                        {
+                            "text_answer": " answer",
+                            "strategy": 2
+                        }
+                    ],
+                    "ai_answers": [
+                        {
+                            "text_answer": "First answer",
+                            "strategy": 0
+                        },
+                        {
+                            "text_answer": "Second answer",
+                            "strategy": 1
+                        },
+                        {
+                            "text_answer": " answer",
+                            "strategy": 2
+                        }
+                    ]
+                },
+                {
+                    "loop_question": "Loop 3 description",
+                    "player_answers": [
+                        {
+                            "text_answer": "First answer",
+                            "strategy": 0
+                        },
+                        {
+                            "text_answer": "Second answer",
+                            "strategy": 1
+                        },
+                        {
+                            "text_answer": "Third answer",
+                            "strategy": 2
+                        }
+                    ],
+                    "ai_answers": [
+                        {
+                            "text_answer": "First answer",
+                            "strategy": 0
+                        },
+                        {
+                            "text_answer": "Second answer",
+                            "strategy": 1
+                        },
+                        {
+                            "text_answer": "Third answer",
+                            "strategy": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
