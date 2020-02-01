@@ -1,0 +1,128 @@
+{
+    "loops": [
+        {
+            "loop_question": "Первый вопрос",
+            "user_answers": [
+                {
+                    "text_answer": "Ответ игрока на первый вопрос",
+                    "strategy": 0
+                },
+                {
+                    "text_answer": "Ответ игрока на первый вопрос",
+                    "strategy": 1
+                },
+                {
+                    "text_answer": "Ответ игрока на первый вопрос",
+                    "strategy": 2
+                }
+            ],
+            "bot_answers": [
+                {
+                    "text_answer": "Ответ бота на первый вопрос",
+                    "strategy": 0
+                },
+                {
+                    "text_answer": "Ответ бота на первый вопрос",
+                    "strategy": 1
+                },
+                {
+                    "text_answer": "Ответ бота на первый вопрос",
+                    "strategy": 2
+                }
+            ]
+        },
+        {
+            "loop_question": "Loop 2 description",
+            "user_answers": [
+                {
+                    "text_answer": "First answer",
+                    "strategy": 0
+                },
+                {
+                    "text_answer": "Second answer",
+                    "strategy": 1
+                },
+                {
+                    "text_answer": " answer",
+                    "strategy": 2
+                }
+            ],
+            "bot_answers": [
+                {
+                    "text_answer": "First answer",
+                    "strategy": 0
+                },
+                {
+                    "text_answer": "Second answer",
+                    "strategy": 1
+                },
+                {
+                    "text_answer": " answer",
+                    "strategy": 2
+                }
+            ]
+        },
+        {
+            "loop_question": "Loop 3 description",
+            "user_answers": [
+                {
+                    "text_answer": "First answer",
+                    "strategy": 0
+                },
+                {
+                    "text_answer": "Second answer",
+                    "strategy": 1
+                },
+                {
+                    "text_answer": "Third answer",
+                    "strategy": 2
+                }
+            ],
+            "bot_answers": [
+                {
+                    "text_answer": "First answer",
+                    "strategy": 0
+                },
+                {
+                    "text_answer": "Second answer",
+                    "strategy": 1
+                },
+                {
+                    "text_answer": "Third answer",
+                    "strategy": 2
+                }
+            ]
+        },
+        {
+            "loop_question": "Loop 3 description",
+            "user_answers": [
+                {
+                    "text_answer": "First answer",
+                    "strategy": 0
+                },
+                {
+                    "text_answer": "Second answer",
+                    "strategy": 1
+                },
+                {
+                    "text_answer": "Third answer",
+                    "strategy": 2
+                }
+            ],
+            "bot_answers": [
+                {
+                    "text_answer": "First answer",
+                    "strategy": 0
+                },
+                {
+                    "text_answer": "Second answer",
+                    "strategy": 1
+                },
+                {
+                    "text_answer": "Third answer",
+                    "strategy": 2
+                }
+            ]
+        }
+    ]
+}
