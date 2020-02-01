@@ -37,6 +37,10 @@ class State {
         return this._loopIndex;
     }
 
+    gameOver(loopsLength) {
+        return loopsLength - 1 >= this._loopIndex;
+    }
+
     setUserStrategy(strategy) {
         this._userStrategy = parseInt(strategy);
     }
