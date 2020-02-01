@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('underscore');
+const assert = require('assert');
 
 class State {
 
@@ -10,7 +11,7 @@ class State {
         this._loopIndex = loopIndex || 0;
         this._userStrategy = userStrategy || _.random(0, 2);
         this._userPoints = userPoints || 0;
-        this._botStartegy = botStartegy || _.random(0, 2);;
+        this._botStartegy = botStartegy || _.random(0, 2);
         this._botPoints = botPoints || 0;
     }
 
@@ -64,12 +65,22 @@ class StateStorage {
         this.states = {};
     }
 
-    getState(id) {
-        return this.states[id] || new State();
+    getState(userId) {
+        return this.states[userId].state;
     }
 
-    setState(id, state) {
-        this[id] = new State(state);
+    checkSession(userId, sessionId) {
+        if (!this.states[userId]) {
+            return false;
+        }
+        return this.states[userId].sessionId === sessionId;
+    }
+
+    setState(userId, sessionId, state) {
+        this.states[userId] = {
+            sessionId,
+            state: new State(state)
+        }
     }
 }
 
