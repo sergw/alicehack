@@ -27,6 +27,14 @@ const winLose = (a, b) => {
         return [0, 1];
     }
 
+    if (a === 2 && b === 1) {
+        return [1, 0];
+    }
+    if (a === 1 && b === 2) {
+        return [0, 1];
+    }
+
+
     return false;
 }
 
