@@ -1,125 +1,94 @@
 {
     "loops": [
         {
-            "loop_question": "Первый вопрос",
+            "loop_question": "Давай для начала вспомним, откуда мы вообще узнали про сокровище?",
             "user_answers": [
                 {
-                    "text_answer": "Ответ игрока на первый вопрос",
+                    "text_answer": "Без моего информатора ничего не вышло бы!",
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Ответ игрока на первый вопрос",
+                    "text_answer": "Это не так уж и важно.",
                     "strategy": 1
                 },
                 {
-                    "text_answer": "Ответ игрока на первый вопрос",
+                    "text_answer": "Я добыл карту, но ты её расшифровал.",
                     "strategy": 2
                 }
             ],
             "bot_answers": [
                 {
-                    "text_answer": "Ответ бота на первый вопрос",
+                    "text_answer": "Если бы я не расшифровал карту, ничего бы не вышло!",
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Ответ бота на первый вопрос",
+                    "text_answer": "На самом деле, это не имеет значения...",
                     "strategy": 1
                 },
                 {
-                    "text_answer": "Ответ бота на первый вопрос",
+                    "text_answer": "Без тебя и правда ничего бы не вышло...",
                     "strategy": 2
                 }
             ]
         },
         {
-            "loop_question": "Loop 2 description",
+            "loop_question": "Когда мы нашли то самое место и обнаружили там стражу - что произошло, помнишь?",
             "user_answers": [
                 {
-                    "text_answer": "First answer",
+                    "text_answer": "Я незаметно поджег тебе плащ, чтобы ты отвлёк внимание на себя.",
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Second answer",
+                    "text_answer": "Я наблюдал за твоими действиями.",
                     "strategy": 1
                 },
                 {
-                    "text_answer": " answer",
+                    "text_answer": "Я отвлёк их внимание, чтобы ты мог пройти.",
                     "strategy": 2
                 }
             ],
             "bot_answers": [
                 {
-                    "text_answer": "First answer",
+                    "text_answer": "Я пытался привлечь их внимание к тебе, чтобы самому пройти.",
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Second answer",
+                    "text_answer": "Я хотел просто дождаться, пока они куда-нибудь уйдут.",
                     "strategy": 1
                 },
                 {
-                    "text_answer": " answer",
+                    "text_answer": "Я собирался помочь тебе их отвлечь!",
                     "strategy": 2
                 }
             ]
         },
         {
-            "loop_question": "Loop 3 description",
+            "loop_question": "Ну а когда мы наконец-то добрались до сокровища и сработала ловушка?",
             "user_answers": [
                 {
-                    "text_answer": "First answer",
+                    "text_answer": "Ха! Я толкнул тебя, а сам схватил мешок и дал деру!",
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Second answer",
+                    "text_answer": "Я взял половину сокровищ и побежал.",
                     "strategy": 1
                 },
                 {
-                    "text_answer": "Third answer",
+                    "text_answer": "Я удерживал закрывающуюся дверь, чтобы ты мог вынести добычу.",
                     "strategy": 2
                 }
             ],
             "bot_answers": [
                 {
-                    "text_answer": "First answer",
+                    "text_answer": "Я попытался поставить тебе подножку, чтобы охрана схватила тебя.",
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Second answer",
+                    "text_answer": "Я хотел взять половину и убежать",
                     "strategy": 1
                 },
                 {
-                    "text_answer": "Third answer",
-                    "strategy": 2
-                }
-            ]
-        },
-        {
-            "loop_question": "Loop 3 description",
-            "user_answers": [
-                {
-                    "text_answer": "First answer",
-                    "strategy": 0
-                },
-                {
-                    "text_answer": "Second answer",
-                    "strategy": 1
-                },
-                {
-                    "text_answer": "Third answer",
-                    "strategy": 2
-                }
-            ],
-            "bot_answers": [
-                {
-                    "text_answer": "First answer",
-                    "strategy": 0
-                },
-                {
-                    "text_answer": "Second answer",
-                    "strategy": 1
-                },
-                {
-                    "text_answer": "Third answer",
+                    "text_answer": "Я расчитывал на твою помощь в побеге.",
                     "strategy": 2
                 }
             ]
