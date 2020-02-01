@@ -41,6 +41,9 @@ gameOverState.loopNext();
 assert.equal(gameOverState.gameOver(1), false);
 assert.equal(gameOverState.gameOver(2), true);
 
+console.log('Score calculator');
+assert.equal(new State(initialState).calcUserScore(), 37);
+
 console.log('Storage');
 stateStorage.setState('uid', 'sid', initialState);
 assert.deepEqual(
