@@ -1,55 +1,99 @@
 const { json } = require('micro');
-const { State, stateStorage } = require('./src/state');
-const { winLose } = require('./src/winLose');
-const { randomAnswer } = require('.src/random');
+const { stateStorage } = require('./src/state');
+const winLose = require('./src/winLose');
+const { randomAnswer } = require('./src/random');
+const { filterAnswer } = require('./src/filter');
+const {
+  intro,
+  speech,
+  goodBye,
+  botTalk,
+  question,
+  checkAnswer,
+} = require('./src/speech');
+const db = require('./src/db');
 
 module.exports = async (req, res) => {
-  const { request, session, version } = await json(req);
-  const db = require('./src/db');
-  const userId = session.user_id;
-  const sessionId = session.session_id;
-  const isStart = stateStorage.checkSession(userId, sessionId);
-
-  const currentState = isStart ? new State() : stateStorage.getState(userId);
-
-  const currentLoop = currentState.getloopIndex();
   const loopCount = db.getLoopCount();
 
-  let resText = '';
-  let resTts = '';
+  const { request, session, version } = await json(req);
+  const userId = session.user_id;
+  const sessionId = session.session_id;
+  const hasSession = stateStorage.checkSession(userId, sessionId);
 
-  if (currentLoop > 0) {
-    // тут надо проверить speech
+  // TODO: если сессия другая нужно спросить может пользователь хочет продолжить
+  if (!hasSession) {
+    stateStorage.setState(userId, sessionId, {});
+  }
 
+  const currentState = stateStorage.getState(userId);
+  const currentLoop = currentState.getloopIndex();
 
-    const botInfo = currentState.getBotInfo();
+  // Переменные для формирования ответа
+  let text = '';
+  let tts = '';
+  let end_session = false; // eslint-disable-line camelcase
+
+  if (hasSession) {
+    // Проверяем, что ответил пользователь
     const userInfo = currentState.getUserInfo();
-    const botAnswers = db.getBotAnswers(currentLoop);
-    const botAnswer = randomAnswer(botInfo.strategy, botAnswers);
+    const userAnswersAll = db.getUserAnswers(currentLoop);
+    const userAnswers = filterAnswer(userInfo.strategy, userAnswersAll);
+    const userStrategy = checkAnswer(userAnswers, request.nlu.tokens);
+    currentState.setUserStrategy(userStrategy);
 
-    resText += botAnswer;
-    resTts += `<speaker effect="pitch_down">${botAnswer}</speaker>`;
+    // Сообщаем решение бота
+    const botInfo = currentState.getBotInfo();
+    const botAnswersAll = db.getBotAnswers(currentLoop);
+    const botAnswer = randomAnswer(botInfo.strategy, userStrategy, botAnswersAll);
+    currentState.setBotStrategy(botAnswer.strategy);
+    [text, tts] = botTalk(botAnswer);
 
-    const points = winLose(userInfo.strategy, botAnswer.strategy);
+    // Подсчитываем очки в результате выбранных решений очки
+    const points = winLose(userStrategy, botAnswer.strategy);
     currentState.addUserPoints(points[0]);
     currentState.addBotPoints(points[1]);
-    currentState.setBotStrategy(botAnswer.strategy);
-    currentState.loopNext();
+    console.log(userStrategy, botAnswer.strategy, points);
 
-    if (currentLoop === loopCount - 1) {
-      // тут посчитать конец игры
+    // Переходим на следующий уровень истории
+    const nextLoop = currentState.loopNext();
+
+    if (nextLoop >= loopCount) {
+      // История закончилась контента нет, нужно заканчивать игру
+      const [goodByeText, goodByeTts] = goodBye(currentState.calcUserScore());
+      text += goodByeText;
+      tts += goodByeTts;
+      end_session = true; // eslint-disable-line camelcase
+    } else {
+      // Продолжаем историю
+      const [questionText, questionTts] = question(db.getQuestion(nextLoop));
+      text += questionText;
+      tts += questionTts;
+      // Сообщаем пользователю варианты которые он может выбрать
+      const [userAnswerText, userAnswerTts] = speech(
+        filterAnswer(userStrategy, db.getUserAnswers(nextLoop)),
+      );
+      text += userAnswerText;
+      tts += userAnswerTts;
     }
   } else {
-    resText = 'Над столицей империи наступила ночь. Пламя факела освещает полупустой трактирный зал. За угловым столиком силите вы и ваш напарник. Вы тихо переговариваетесь между собой, стараясь не привлекать к себе лишнего внимания. Как нам справедливо поделить добычу? ';
-    resTts = 'Над столицей империи наступила ночь. Пламя факела освещает полупустой трактирный зал. За угловым столиком силите вы и ваш напарник. Вы тихо переговариваетесь между собой, стараясь не привлекать к себе лишнего внимания. <speaker effect="pitch_down">Как нам справедливо поделить добычу?</speaker>';
-    const question = db.getQuestion(currentLoop);
-    resText += question;
-    resTts += `<speaker effect="pitch_down">${question}</speaker>`;
+    [text, tts] = intro;
+
+    const [questionText, questionTts] = question(db.getQuestion(currentLoop));
+    text += questionText;
+    tts += questionTts;
+
+    const userAnswersAll = db.getUserAnswers(currentLoop);
+    const userInfo = currentState.getUserInfo();
+    const userAnswers = filterAnswer(userInfo.strategy, userAnswersAll);
+    const [userAnswerText, userAnswerTts] = speech(userAnswers);
+    text += userAnswerText;
+    tts += userAnswerTts;
   }
 
   res.end(JSON.stringify({
     version,
     session,
-    response: { text: resText, tts: resTts, end_session: false }
+    response: { text, tts, end_session },
   }));
 };
