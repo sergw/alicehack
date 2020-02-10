@@ -30,6 +30,7 @@ const question = (q) => [
 
 const checkAnswer = (answers, tokens) => {
   let res = null;
+  console.log('tokens', tokens);
   tokens.forEach((token) => {
     if (token === '1' || token === 'один' || token === 'первый') {
       res = answers[0].strategy;

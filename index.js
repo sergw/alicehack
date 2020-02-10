@@ -33,7 +33,9 @@ module.exports = async (req, res) => {
   let tts = '';
   let end_session = false; // eslint-disable-line camelcase
 
-  if (hasSession) {
+  if (hasSession && currentLoop < loopCount) {
+    console.log('currentLoop', currentLoop);
+    console.log('loopCount', loopCount);
     // Проверяем, что ответил пользователь
     const userInfo = currentState.getUserInfo();
     const userAnswers = db.getUserAnswers(currentLoop);
@@ -75,13 +77,22 @@ module.exports = async (req, res) => {
       tts += userAnswerTts;
     }
   } else {
+    // TODO: если currentLoop > 0 так как сессия есть но игра то уже закончилась
+    // нужно сбросить сессию
+    if (currentLoop >= loopCount) {
+      console.log('====> [*] clear session after end game');
+      stateStorage.setState(userId, sessionId, {});
+    } else {
+      console.log('====> first enter');
+    }
+
     [text, tts] = intro;
 
-    const [questionText, questionTts] = question(db.getQuestion(currentLoop));
+    const [questionText, questionTts] = question(db.getQuestion(0));
     text += questionText;
     tts += questionTts;
 
-    const userAnswers = db.getUserAnswers(currentLoop);
+    const userAnswers = db.getUserAnswers(0);
     const [userAnswerText, userAnswerTts] = speech(userAnswers);
     text += userAnswerText;
     tts += userAnswerTts;
