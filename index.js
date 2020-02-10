@@ -1,7 +1,7 @@
 const { json } = require('micro');
 const { stateStorage } = require('./src/state');
 const winLose = require('./src/winLose');
-const { randomAnswer } = require('./src/random');
+const { generateAnswer } = require('./src/generate-answer');
 const {
   intro,
   speech,
@@ -40,12 +40,19 @@ module.exports = async (req, res) => {
     const userInfo = currentState.getUserInfo();
     const userAnswers = db.getUserAnswers(currentLoop);
     const userStrategy = checkAnswer(userAnswers, request.nlu.tokens);
+    const prevUserStrategy = userInfo.strategy;
+
     currentState.setUserStrategy(userStrategy);
 
     // Сообщаем решение бота
     const botInfo = currentState.getBotInfo();
     const botAnswersAll = db.getBotAnswers(currentLoop);
-    const botAnswer = randomAnswer(botInfo.strategy, userStrategy, botAnswersAll);
+    const { botAnswer, changeType } = generateAnswer(botInfo.type, botInfo.strategy, prevUserStrategy, botAnswersAll);
+
+    if (changeType) {
+      currentState.setBotType(changeType);
+    }
+
     currentState.setBotStrategy(botAnswer.strategy);
     [text, tts] = botTalk(botAnswer);
 

@@ -1,15 +1,17 @@
 const _ = require('underscore');
+const { BOT_TYPES } = require('./generate-answer');
 
 class State {
   constructor(startState = {}) {
     const {
-      loopIndex, userStrategy, userPoints, botStartegy, botPoints,
+      loopIndex, userStrategy, userPoints, botStartegy, botPoints, botType
     } = startState;
 
     this._loopIndex = loopIndex || 0;
     this._userStrategy = userStrategy || _.random(0, 2);
     this._userPoints = userPoints || 0;
-    this._botStartegy = botStartegy || _.random(0, 2);
+    this._botType = botType || BOT_TYPES[_.random(0, BOT_TYPES.length - 1)];
+    this._botStartegy = botStartegy || null;
     this._botPoints = botPoints || 0;
   }
 
@@ -28,6 +30,7 @@ class State {
     return {
       strategy: this._botStartegy,
       points: this._botPoints,
+      type: this._botType
     };
   }
 
@@ -50,6 +53,10 @@ class State {
 
   setBotStrategy(strategy) {
     this._botStartegy = parseInt(strategy, 10);
+  }
+
+  setBotType(type) {
+    this._botType = type;
   }
 
   addBotPoints(points) {
