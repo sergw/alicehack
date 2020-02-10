@@ -2,7 +2,6 @@ const { json } = require('micro');
 const { stateStorage } = require('./src/state');
 const winLose = require('./src/winLose');
 const { randomAnswer } = require('./src/random');
-const { filterAnswer } = require('./src/filter');
 const {
   intro,
   speech,
@@ -37,8 +36,7 @@ module.exports = async (req, res) => {
   if (hasSession) {
     // Проверяем, что ответил пользователь
     const userInfo = currentState.getUserInfo();
-    const userAnswersAll = db.getUserAnswers(currentLoop);
-    const userAnswers = filterAnswer(userInfo.strategy, userAnswersAll);
+    const userAnswers = db.getUserAnswers(currentLoop);
     const userStrategy = checkAnswer(userAnswers, request.nlu.tokens);
     currentState.setUserStrategy(userStrategy);
 
@@ -71,7 +69,7 @@ module.exports = async (req, res) => {
       tts += questionTts;
       // Сообщаем пользователю варианты которые он может выбрать
       const [userAnswerText, userAnswerTts] = speech(
-        filterAnswer(userStrategy, db.getUserAnswers(nextLoop)),
+        db.getUserAnswers(nextLoop)
       );
       text += userAnswerText;
       tts += userAnswerTts;
@@ -83,9 +81,7 @@ module.exports = async (req, res) => {
     text += questionText;
     tts += questionTts;
 
-    const userAnswersAll = db.getUserAnswers(currentLoop);
-    const userInfo = currentState.getUserInfo();
-    const userAnswers = filterAnswer(userInfo.strategy, userAnswersAll);
+    const userAnswers = db.getUserAnswers(currentLoop);
     const [userAnswerText, userAnswerTts] = speech(userAnswers);
     text += userAnswerText;
     tts += userAnswerTts;
