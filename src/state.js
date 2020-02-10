@@ -58,11 +58,12 @@ class State {
 
   // TODO: убрать из стейта
   calcUserScore() {
-    const sum = Math.max(this._botPoints, 0) + Math.max(this._userPoints, 0);
+    const normalizedUserPoints = Math.max(this._userPoints, 0)
+    const sum = Math.max(this._botPoints, 0) + normalizedUserPoints;
     if (sum === 0) {
       return 0;
     }
-    return parseInt((this._userPoints / sum) * 100, 10);
+    return parseInt((normalizedUserPoints / sum) * 100, 10);
   }
 }
 
