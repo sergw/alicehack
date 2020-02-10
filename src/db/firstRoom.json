@@ -8,12 +8,8 @@
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Это не так уж и важно.",
-                    "strategy": 1
-                },
-                {
                     "text_answer": "Я добыл карту, но ты её расшифровал.",
-                    "strategy": 2
+                    "strategy": 1
                 }
             ],
             "bot_answers": [
@@ -22,12 +18,8 @@
                     "strategy": 0
                 },
                 {
-                    "text_answer": "На самом деле, это не имеет значения...",
-                    "strategy": 1
-                },
-                {
                     "text_answer": "Без тебя и правда ничего бы не вышло...",
-                    "strategy": 2
+                    "strategy": 1
                 }
             ]
         },
@@ -39,12 +31,8 @@
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Я наблюдал за твоими действиями.",
-                    "strategy": 1
-                },
-                {
                     "text_answer": "Я отвлёк их внимание, чтобы ты мог пройти.",
-                    "strategy": 2
+                    "strategy": 1
                 }
             ],
             "bot_answers": [
@@ -53,12 +41,8 @@
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Я хотел просто дождаться, пока они куда-нибудь уйдут.",
-                    "strategy": 1
-                },
-                {
                     "text_answer": "Я собирался помочь тебе их отвлечь!",
-                    "strategy": 2
+                    "strategy": 1
                 }
             ]
         },
@@ -70,12 +54,8 @@
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Я взял половину сокровищ и побежал.",
-                    "strategy": 1
-                },
-                {
                     "text_answer": "Я удерживал закрывающуюся дверь, чтобы ты мог вынести добычу.",
-                    "strategy": 2
+                    "strategy": 1
                 }
             ],
             "bot_answers": [
@@ -84,12 +64,8 @@
                     "strategy": 0
                 },
                 {
-                    "text_answer": "Я хотел взять половину и убежать",
-                    "strategy": 1
-                },
-                {
                     "text_answer": "Я расчитывал на твою помощь в побеге.",
-                    "strategy": 2
+                    "strategy": 1
                 }
             ]
         }
